@@ -90,9 +90,9 @@ Example request:
 curl -i -X POST -H "Content-Type: application/json" -d '{"post_ids":["1","3"]}' 'http://127.0.0.1:5000/getList'
 ```
 
-## ###################################  TESTING ####################################################
+## TESTING
 
-## ######################### Unit Testing ###########################
+##  Unit Testing 
 
 We use Tavern to test each service. Test files are located under 'tests'.
 configobj package is also needed to configure filepath for testing purpose.
@@ -115,7 +115,7 @@ py.test
 
 ```
  
-# ########################## Load Testing #############################
+#  Load Testing 
 
 We use a framework called Locust to perform load test. This load test also simulates a user scenario in which user performs all tasks using both services.
 
