@@ -4,7 +4,7 @@
 ### Project Members:
 *  (@csu.fullerton.ed) | Role: Ops
 * Mohit Kumar (mohit_kumar@csu.fullerton.edu) | Role: Dev
-*  (@csu.fullerton.edu) | Role: SDET
+* Emily Pham (tpham523@csu.fullerton.edu) | Role: SDET
 
 Installations:pip3 install flask, sudo apt install --yes gunicorn3
 
