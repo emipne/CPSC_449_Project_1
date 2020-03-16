@@ -1,0 +1,163 @@
+# This is testcase users microservices
+
+################### POSTING ######################
+
+###### Create a post #####
+test_name: Create a new post
+stages:
+  - name: Make sure we are getting success response after posting
+
+    request:
+      url: http://localhost:2015/posts/create
+      method: POST
+      json:
+        title: A brand new post
+        description: This post is very new
+        username: some_random_guy
+        community_name: RandomPeople
+        resource_url: http://newpost.com
+      headers:
+        content-type: application/json
+
+    # The expected response code 201
+    response:
+      status_code: 201
+
+### NEGATIVE TEST ##
+---
+test_name: Create a post without a title and username
+stages:
+  - name: Make sure we can't post a post without a title/community name/username
+
+    request:
+      url: http://localhost:2015/posts/create
+      method: POST
+      json:
+        title: A post from a cat
+        description: cat is cute
+        resource_url: http://catisking.com
+        community_name: CatKing
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 409
+
+##### DELETE A POST #######
+# ---
+# test_name: Delete a post
+# stages:
+#   - name: Make sure we are getting success response after deleting a post
+
+#     request:
+#       url: http://localhost:2015/posts/delete?post_id=965
+#       method: DELETE
+#       headers:
+#         content-type: application/json
+#     response:
+#       status_code: 200
+
+
+## NEGATIVE TEST ##
+---
+test_name: Delete a non-existing post
+stages:
+  - name: Make sure we are getting an error when trying to to this
+
+    request:
+      url: http://localhost:2015/posts/delete?post_id=57
+      method: DELETE
+      headers:
+        content-type: application/json
+    response:
+      status_code: 404
+
+###### RETRIEVE N NUMBER OF POSTS IN A COMMUNITY #########
+---
+test_name: retrieve n number of recent posts within a given community
+stages:
+  - name: Make sure we get success response after retrieving n number of posts
+
+    request:
+      url: http://localhost:2015/posts/filter?n=2&community_name=Jelly
+      method: GET
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 200
+
+## NEGATIVE TEST ##
+---
+test_name: retrieve n number of recent posts within a given non-existing community
+stages:
+  - name: Make sure we get an error when trying to retrieve n number of posts in a non-existing community
+
+    request:
+      url: http://localhost:2015/posts/filter?n=2&community_name=abc
+      method: GET
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 404
+
+###### RETRIEVE N NUMBER OF POSTS IN ANY COMMUNITY #########
+---
+test_name: retrieve n number of recent posts in any community
+stages:
+  - name: Make sure we get success response after retrieving n number of posts
+
+    request:
+      url: http://localhost:2015/posts/filter?n=2
+      method: GET
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 200
+
+## NEGATIVE TEST
+test_name: retrieve n = 0 number of recent posts in any community
+stages:
+  - name: Make sure we get an error when retrieving n recent posts in any community where n = 0
+
+    request:
+      url: http://localhost:2015/posts/filter?n=0
+      method: GET
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 404
+
+
+####### RETRIVE A POST WITH A GIVEN ID ##########
+---
+test_name: retrieve a post given its ID
+stages:
+  - name: Make sure we get success response after retrieving the post
+
+    request:
+      url: http://localhost:2015/posts/get?post_id=2
+      method: GET
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 200
+
+## NEGATIVE TEST
+---
+test_name: retrieve a post with a wrong ID
+stages:
+  - name: Make sure we get an 404 error when retrieving a post with non-existing ID
+
+    request:
+      url: http://localhost:2015/posts/get?post_id=104b
+      method: GET
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 404

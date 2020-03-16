@@ -1,0 +1,10 @@
+localhost:2015/posts {
+root {%SITE_ROOT%}
+proxy / http://127.0.0.1:5000 http://127.0.0.1:5001 http://127.0.0.1:5002
+log stdout
+}
+localhost:2015/votes {
+root {%SITE_ROOT%}
+proxy / http://127.0.0.1:5100 http://127.0.0.1:5101 http://127.0.0.1:5102
+log stdout
+}
