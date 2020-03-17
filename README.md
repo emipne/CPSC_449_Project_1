@@ -141,8 +141,8 @@ locust --version
 ```
 locust -f tests/loadTest.py --host=http://localhost:2015 --no-web -c 100 -r 10
 
-# -c 100: simulate number of users using the services, here it's 100
-# -r 50: the rate of # users being spawned per second, here it's 10
+# -c 100: simulate number of concurrent users using the services, here it's 100
+# -r 10: the rate of # users being spawned per second, here it's 10
 ```
 
 4) To stress the services, we can increase the number of concurrent users to 500-1000
