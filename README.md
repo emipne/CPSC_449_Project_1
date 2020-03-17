@@ -130,13 +130,19 @@ pip3 install faker
 ```
 pip3 install locustio
 ```
+Note:
+Type the following command to check if locust is installed. If it says 'command not found', please 
+restart your OS.
+```
+locust --version
+```
 
 3) How to run test
 ```
 locust -f tests/loadTest.py --host=http://localhost:2015 --no-web -c 100 -r 10
 
 # -c 100: simulate number of users using the services, here it's 100
-# -r 50: the rate of # users being spawned per second, here it's 50
+# -r 50: the rate of # users being spawned per second, here it's 10
 ```
 
 4) To stress the services, we can increase the number of concurrent users to 500-1000
