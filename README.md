@@ -2,7 +2,7 @@
 # CPSC 449 Web Backend Engineering
 ## Project-1
 ### Project Members:
-* Alexandria Wolfram (aleewolfram@csu.fullerton.ed) | Role: Ops
+* Alexandria Wolfram (aleewolfram@csu.fullerton.edu) | Role: Ops
 * Mohit Kumar (mohit_kumar@csu.fullerton.edu) | Role: Dev
 * Emily Pham (tpham523@csu.fullerton.edu) | Role: SDET
 
