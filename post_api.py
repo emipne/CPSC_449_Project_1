@@ -244,7 +244,7 @@ def create_post():
     resource_url = params.get('resource_url')
 
     if not title or not username or not community_name:
-        return jsonify(get_response(status_code=409, message="username / title / community_name is not in request"))
+        return jsonify(get_response(status_code=409, message="username / title / community_name is not in request")), 409
     query1 = 'INSERT INTO votes (upvotes, downvotes) VALUES (?, ?)'
     args1 = (0, 0)
     

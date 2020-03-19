@@ -2,9 +2,12 @@
 # CPSC 449 Web Backend Engineering
 ## Project-1
 ### Project Members:
-*  (@csu.fullerton.ed) | Role: Ops
+* Alexandria Wolfram (aleewolfram@csu.fullerton.ed) | Role: Ops
 * Mohit Kumar (mohit_kumar@csu.fullerton.edu) | Role: Dev
 * Emily Pham (tpham523@csu.fullerton.edu) | Role: SDET
+
+All Major Documentation is in documentation folder which includes post, vote api and run book.
+Below are just the quick start for the project.
 
 Installations:pip3 install flask, sudo apt install --yes gunicorn3
 
