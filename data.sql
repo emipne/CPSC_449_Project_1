@@ -31,47 +31,47 @@ CREATE TABLE posts (
     FOREIGN KEY (community_id) REFERENCES community (community_id)
 );
 
-INSERT INTO votes(upvotes, downvotes) VALUES(100, 25);
-INSERT INTO community(community_id, community_name) VALUES(1, 'algebra');
+INSERT INTO votes(upvotes, downvotes) VALUES(103, 24);
+INSERT INTO community(community_id, community_name) VALUES(1, 'cheesecake');
 INSERT INTO posts(community_id, title, description, resource_url, username, vote_id)
 VALUES(
-    (SELECT community_id FROM community WHERE community_name='algebra'),
-    'Algebra post 1',
-    'Some quadratic formula',
-    'http://fullerton.edu',
-    'math_guy_1',
+    (SELECT community_id FROM community WHERE community_name='cheesecake'),
+    'The Best Cheesecake Recipe',
+    'This was too good, you have to try it.',
+    'https://sugarspunrun.com/best-cheesecake-recipe/',
+    'cakeLvr',
     (SELECT MAX(vote_id) from votes)
 );
 
-INSERT INTO votes(upvotes, downvotes) VALUES(99, 24);
-INSERT INTO community(community_id, community_name) VALUES(2, 'calculus');
+INSERT INTO votes(upvotes, downvotes) VALUES(64, 0);
+INSERT INTO community(community_id, community_name) VALUES(2, 'coronavirus');
 INSERT INTO posts(community_id, title, description, username, vote_id)
 VALUES(
-    (SELECT community_id FROM community WHERE community_name='calculus'),
-    'Calculus post 1',
-    'Steps to integrate',
-    'math_guy_1',
+    (SELECT community_id FROM community WHERE community_name='coronavirus'),
+    'Best defence against coronavirus',
+    'Wash your hands!',
+    'healthLvr',
     (SELECT MAX(vote_id) from votes)
 );
 
-INSERT INTO votes(upvotes, downvotes) VALUES(98, 23);
+INSERT INTO votes(upvotes, downvotes) VALUES(78, 16);
 INSERT INTO posts(community_id, title, description, resource_url, username, vote_id)
 VALUES(
-    (SELECT community_id FROM community WHERE community_name='calculus'),
-    'Calculus post 2',
-    'Steps to differentiate',
-    'https://www.google.com',
-    'math_guy_2',
+    (SELECT community_id FROM community WHERE community_name='coronavirus'),
+    '100 things to do in quarantine',
+    'I have already done 99 of them.',
+    'https://www.usatoday.com/100-things-do-while-trapped-inside',
+    'DrAlone',
     (SELECT MAX(vote_id) from votes)
 );
 
-INSERT INTO votes(upvotes, downvotes) VALUES(97, 22);
+INSERT INTO votes(upvotes, downvotes) VALUES(37, 14);
 INSERT INTO posts(community_id, title, description, username, vote_id)
 VALUES(
-    (SELECT community_id FROM community WHERE community_name='calculus'),
-    'Calculus post 3',
-    'Differentiation is rate of change',
-    'math_guy_2',
+    (SELECT community_id FROM community WHERE community_name='coronavirus'),
+    'Remember to do this!',
+    'Maintain a 6ft distance between you and others.',
+    'healthLvr',
     (SELECT MAX(vote_id) from votes)
 );
 
