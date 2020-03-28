@@ -20,7 +20,7 @@ CREATE TABLE votes (
 
 CREATE TABLE posts (
     post_id INTEGER PRIMARY KEY,
-    community_id VARCHAR NOT NULL,
+    community_id INTEGER NOT NULL,
     title VARCHAR NOT NULL,
     description VARCHAR,
     resource_url VARCHAR,
