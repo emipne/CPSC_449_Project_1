@@ -77,7 +77,7 @@ stages:
   - name: Make sure we are getting success response after getting a number of upvotes and downvotes
 
     request:
-      url: http://localhost:2015/votes/get?vote_id=2
+      url: http://localhost:2015/votes/get?vote_id=11
       method: GET
       headers:
         content-type: application/json
@@ -118,7 +118,7 @@ stages:
   - name: Make sure we are getting success response after requesting listing the n top-scoring posts to any community
 
     request:
-      url: http://localhost:2015/votes/getTop?n=3
+      url: http://localhost:2015/votes/getTop?n=10
       method: GET
       headers:
         content-type: application/json
@@ -151,7 +151,7 @@ stages:
       url: http://localhost:2015/votes/getList
       method: POST
       json:
-        post_ids: [100, 101]
+        post_ids: [150, 151]
     response:
       status_code: 200
 

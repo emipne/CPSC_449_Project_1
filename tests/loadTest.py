@@ -19,10 +19,10 @@ url = fake.image_url()
 community_name = fake.word(ext_word_list=community_list)
 
 # generate bogus data for voting microservice
-voteID = fake.random_int(min=1, max=200, step=1)
+voteID = fake.random_int(min=400, max=500, step=1)
 voteID_json = {"vote_id":voteID}
 
-postID = fake.random_int(min=1, max=200, step=1)
+postID = fake.random_int(min=400, max=500, step=1)
 list_vote_ID = {"post_ids":[postID, postID]}
 
 postAmount = fake.random_int(min=1, max=200, step=1)
