@@ -43,19 +43,21 @@ stages:
     response:
       status_code: 409
 
-##### DELETE A POST #######
-# ---
-# test_name: Delete a post
-# stages:
-#   - name: Make sure we are getting success response after deleting a post
+##### DELETE A POST ####### MAKE SURE TO DELETE A VALID POST_ID
+##### Please try a different ID if test fails the first time
 
-#     request:
-#       url: http://localhost:2015/posts/delete?post_id=965
-#       method: DELETE
-#       headers:
-#         content-type: application/json
-#     response:
-#       status_code: 200
+---
+test_name: Delete a post
+stages:
+  - name: Make sure we are getting success response after deleting a post
+
+    request:
+      url: http://localhost:2015/posts/delete?post_id=31
+      method: DELETE
+      headers:
+        content-type: application/json
+    response:
+      status_code: 200
 
 
 ## NEGATIVE TEST ##
