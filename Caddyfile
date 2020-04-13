@@ -8,3 +8,13 @@ root {%SITE_ROOT%}
 proxy / http://127.0.0.1:5100 http://127.0.0.1:5101 http://127.0.0.1:5102
 log stdout
 }
+localhost:2015/users {
+root {%SITE_ROOT%}
+proxy / http://127.0.0.1:5200 http://127.0.0.1:5201 http://127.0.0.1:5202
+log stdout
+}
+localhost:2015/messages {
+root {%SITE_ROOT%}
+proxy / http://127.0.0.1:5300 http://127.0.0.1:5301 http://127.0.0.1:5302
+log stdout
+}
