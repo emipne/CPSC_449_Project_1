@@ -1,4 +1,4 @@
-################### POSTING ######################
+################### USER ######################
 
 ###### Create a new user #####
 test_name: Create a new user
@@ -9,15 +9,15 @@ stages:
       url: http://localhost:2015/users/register
       method: POST
       json:
-        username: tex
-        email: tex@animalcrossing.com
+        username: cheri
+        email: cheri@animalcrossing.com
       headers:
         content-type: application/json
 
     # The expected response code 201
     response:
       status_code: 201
-
+---
 ##### Update user's email #####
 test_name: Update user's email
 stages:
@@ -27,14 +27,14 @@ stages:
       url: http://localhost:2015/users/update_email
       method: PUT
       json:
-        username: tex
-        email: newTex@animalcrossing.com
+        username: cheri
+        email: newCheri@animalcrossing.com
       headers:
         content-type: application/json
     
     response:
       status_code: 200
-
+---
 ##### Update user's email ######
 test_name: Update a non-existing user's email
 stages:
@@ -51,3 +51,46 @@ stages:
       
     response:
       status_code: 404
+
+---
+test_name: Add karma to a user
+stages:
+  - name: Make sure we are getting a success response when adding karma to a valid user
+
+    request:
+      url: http://localhost:2015/users/add_karma
+      method: PUT
+      json:
+        username: cheri
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 200
+---
+test_name: Remove karma from user
+stages:
+  - name: Make sure we are getting a success response when subtracting karma from a valid user
+
+    request:
+      url: http://localhost:2015/users/remove_karma
+      method: PUT
+      json:
+        username: cheri
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 200
+
+---
+test_name: delete a user
+stages:
+  - name: Make sure we are getting a success response when deleting a valid account
+
+    request:
+      url: http://localhost:2015/users/delete?username=cheri
+      method: DELETE
+
+    response:
+      status_code: 200

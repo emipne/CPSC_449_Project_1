@@ -1,0 +1,48 @@
+################### MESSAGING ##################
+
+###### Send a new message #####
+test_name: Send a new message
+stages:
+  - name: Make sure we are getting success response after sending message
+
+    request:
+      url: http://localhost:2015/messages/send
+      method: POST
+      json:
+        user_from: mike
+        user_to: tex
+        msg_content: Hello my dear
+        msg_flag: greetings
+      headers:
+        content-type: application/json
+
+    # The expected response code 201
+    response:
+      status_code: 201
+
+###### Favorite a message #####
+test_name: Favorite a message
+stages:
+  - name: Make sure we are getting success response after favorting a valid message
+
+    request:
+      url: http://localhost:2015/messages/favorite?msg_id=8
+      method: POST
+     
+    # The expected response code 201
+    response:
+      status_code: 201
+
+###### Delete a message #######
+
+test_name: Delete a message
+stages:
+  - name: Make sure we are getting success response after deleting a valid message
+
+    request:
+      url: http://localhost:2015/messages/delete?msg_id=8
+      method: DELETE
+     
+    # The expected response code 200
+    response:
+      status_code: 200
