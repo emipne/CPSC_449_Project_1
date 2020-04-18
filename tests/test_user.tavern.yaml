@@ -31,11 +31,11 @@ stages:
         email: newCheri@animalcrossing.com
       headers:
         content-type: application/json
-    
+
     response:
       status_code: 200
 ---
-##### Update user's email ######
+##### NEGATIVE TEST ######
 test_name: Update a non-existing user's email
 stages:
   - name: Make sure we are getting an error after trying to update an invalid user's email
@@ -48,7 +48,7 @@ stages:
         email: faker@animalcrossing.com
       headers:
         content-type: application/json
-      
+
     response:
       status_code: 404
 
