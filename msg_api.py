@@ -35,7 +35,7 @@ app.config.from_object(__name__)
 # app.config.from_envvar('APP_CONFIG')
 # db_name: data.db
 
-# table1: users 
+# table1: users
 # user_id
 # username
 # email
@@ -96,7 +96,7 @@ def close_db(e=None):
 # home page
 @app.route('/', methods=['GET'])
 def home():
-    return jsonify(get_response(status_code=200, message="Welcome to CSUF Discussions Post API."))
+    return jsonify(get_response(status_code=200, message="Welcome to CSUF messages API."))
 
 
 # 404 page
@@ -167,19 +167,19 @@ def send():
     query2 = "SELECT username FROM users WHERE username = ?"
     args2 = (user_to,)
     q_receiver = query_db(query2, args2)
-    
+
     if not q_sender:
-        return jsonify(get_response(status_code=404, message="Sender not existed")), 404 
+        return jsonify(get_response(status_code=404, message="Sender not existed")), 404
     if not q_receiver:
-        return jsonify(get_response(status_code=404, message="Receiver not existed")), 404 
+        return jsonify(get_response(status_code=404, message="Receiver not existed")), 404
 
     query = 'INSERT INTO messages (user_from, user_to, msg_content, msg_flag) VALUES ((SELECT user_id FROM users WHERE username=?), (SELECT user_id FROM users WHERE username=?), ?, ?)'
     args = (user_from, user_to, msg_content, msg_flag)
     q = transaction_db(query=[query], args=[args], return_=True)
 
     if not q:
-        return page_not_found(404) 
-    
+        return page_not_found(404)
+
     return jsonify(get_response(status_code=201, message="Message sent")), 201
 
 @app.route('/delete', methods=['DELETE'])
@@ -194,8 +194,8 @@ def delete():
     q = query_db(query, args)
 
     if not q:
-        return jsonify(get_response(status_code=404, message="Message not existed")), 404 
-   
+        return jsonify(get_response(status_code=404, message="Message not existed")), 404
+
     query = 'DELETE FROM favorite WHERE msg_id = ?'
     args = (msg_id,)
     query1 = 'DELETE FROM messages WHERE msg_id = ?'
@@ -204,7 +204,7 @@ def delete():
 
     if not q:
         return page_not_found(404)
-    
+
     return jsonify(get_response(status_code=200, message="Message deleted")), 200
 
 @app.route('/favorite', methods=['POST'])
@@ -218,14 +218,14 @@ def favorite():
     q = query_db(query, args)
 
     if not q:
-        return jsonify(get_response(status_code=404, message="Message not existed")), 404 
+        return jsonify(get_response(status_code=404, message="Message not existed")), 404
 
     query2 = 'SELECT msg_id FROM favorite WHERE msg_id = ?'
     args2 = (msg_id,)
     q1 = query_db(query2,args2)
 
     if q1:
-        return jsonify(get_response(status_code=404, message="Message already favorited")), 404 
+        return jsonify(get_response(status_code=404, message="Message already favorited")), 404
 
     query = 'INSERT INTO favorite (msg_ID) VALUES (?)'
     args = (msg_id,)
@@ -241,5 +241,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-

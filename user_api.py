@@ -20,12 +20,12 @@ import sqlite3
 # --------------------
 # Add one karma from user account: Send a PUT request to route of add_karma() fn
 # Example request:
-#   curl -i -X PUT -H 'Content-Type:application/json' -d '{"username":"axel"}'  
+#   curl -i -X PUT -H 'Content-Type:application/json' -d '{"username":"axel"}'
 #   http://localhost:2015/users/add_karma;
 # --------------------
 # Remove one karma from user account: Send a PUT request to route of remove_karma() fn
 # Example request:
-#   curl -i -X PUT -H 'Content-Type:application/json' -d '{"username":"axel"}'  
+#   curl -i -X PUT -H 'Content-Type:application/json' -d '{"username":"axel"}'
 #   http://localhost:2015/users/remove_karma
 # --------------------
 # Delete a user: Send a DELETE request to route of delete() fn
@@ -46,7 +46,7 @@ app.config.from_object(__name__)
 # app.config.from_envvar('APP_CONFIG')
 # db_name: data.db
 
-# table1: users 
+# table1: users
 # user_id
 # username
 # email
@@ -108,7 +108,7 @@ def close_db(e=None):
 # home page
 @app.route('/', methods=['GET'])
 def home():
-    return jsonify(get_response(status_code=200, message="Welcome to CSUF Discussions Post API."))
+    return jsonify(get_response(status_code=200, message="Welcome to CSUF users API."))
 
 
 # 404 page
@@ -175,12 +175,12 @@ def register():
 
     if not username or not email:
         return jsonify(get_response(status_code=409, message="Username / Email is not provided")), 409
-    
+
     query = 'SELECT username, email FROM users WHERE username = ? OR email = ?'
     args = (username, email)
-    
+
     q = query_db(query, args)
-    
+
     if q:
         return jsonify(get_response(status_code=404, message="Username / Email has been taken")), 404
 
@@ -190,7 +190,7 @@ def register():
 
     if not q:
         return page_not_found(404)
-        
+
     return jsonify(get_response(status_code=201, message="User created")), 201
 
 @app.route('/update_email', methods=["PUT"])
@@ -203,15 +203,15 @@ def updateEmail():
         return jsonify(get_response(status_code=409, message="Username / Email is not provided")), 409
 
     query = 'SELECT username FROM users WHERE username = ?'
-    args = (username,) 
+    args = (username,)
 
     q = query_db(query, args)
 
-    if not q: 
+    if not q:
         return jsonify(get_response(status_code=404, message="Username not found")), 404
 
     query = 'UPDATE users SET email = ? WHERE username = ?'
-    args = (email, username) 
+    args = (email, username)
 
     q = query_db(query, args, commit=True)
     if not q:
@@ -228,17 +228,17 @@ def add_karma():
         return jsonify(get_response(status_code=409, message="Username is not provided")), 409
 
     query = 'SELECT username FROM users WHERE username = ?'
-    args = (username,) 
+    args = (username,)
 
     q = query_db(query, args)
 
-    if not q: 
+    if not q:
         return jsonify(get_response(status_code=404, message="Username not found")), 404
 
     query = 'UPDATE users SET karma = karma + 1 WHERE username = ?'
     args = (username,)
     q = query_db(query, args, commit=True)
-    
+
     if not q:
         return page_not_found(404)
 
@@ -253,11 +253,11 @@ def remove_karma():
         return jsonify(get_response(status_code=409, message="Username is not provided")), 409
 
     query = 'SELECT username FROM users WHERE username = ?'
-    args = (username,) 
+    args = (username,)
 
     q = query_db(query, args)
 
-    if not q: 
+    if not q:
         return jsonify(get_response(status_code=404, message="Username not found")), 404
 
     query = 'UPDATE users SET karma = karma - 1 WHERE username = ?'
@@ -278,16 +278,16 @@ def delete():
         return jsonify(get_response(status_code=409, message="Username is not provided")), 409
 
     query = 'SELECT username FROM users WHERE username = ?'
-    args = (username,) 
+    args = (username,)
     q = query_db(query, args)
 
-    if not q: 
+    if not q:
         return jsonify(get_response(status_code=404, message="Username not found")), 404
 
     query = 'DELETE FROM users WHERE username = ?'
     args = (username,)
 
-    q = query_db(query, args, commit=True)   
+    q = query_db(query, args, commit=True)
     if not q:
         return page_not_found(404)
 
