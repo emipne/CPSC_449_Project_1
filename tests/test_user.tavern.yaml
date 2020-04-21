@@ -82,7 +82,21 @@ stages:
 
     response:
       status_code: 200
+---
+test_name: Add karma to a nonexistent user
+stages:
+  - name: Make sure we are getting a success response when adding karma to a valid user
 
+    request:
+      url: http://localhost:2015/users/add_karma
+      method: PUT
+      json:
+        username: fake
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 404
 ---
 test_name: delete a user
 stages:
