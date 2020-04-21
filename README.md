@@ -8,4 +8,4 @@
 
 This application includes a pair of web microservices that provide functionality for a reddit-style application as well as two automation test suites for these specific services. These microservices allow for User and Message functionality (Project 2) , voting and posting (project1) back-end functionality on the site. 
 
-Complete documentation including runbook and api documentation can found in /documentation (includes project 1 and project 1 Extension project2). 
+Complete documentation including runbook and api documentation can found in /documentation. 
